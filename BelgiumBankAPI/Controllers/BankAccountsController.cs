@@ -35,5 +35,17 @@ namespace BelgiumBankAPI.Controllers
             apiContext.SaveChanges();
             return new JsonResult(Ok(account));
         }
+
+        [HttpGet]
+        public JsonResult GetAccount(int id) 
+        { 
+            var result = apiContext.Accounts.Find(id);
+
+            if (result == null)
+            {
+                return new JsonResult(NotFound());
+            }
+            return new JsonResult(Ok(result));
+        }
     }
 }
