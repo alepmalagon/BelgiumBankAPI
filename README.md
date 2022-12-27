@@ -13,7 +13,7 @@
 - [POST] ​/api​/BankAccounts​/CreateEditAccount
 - [GET] ​/api​/BankAccounts​/GetAccount
 - [GET] ​/api​/BankAccounts​/GetCostumerAccount
-- [GET] ​/api​/BankAccounts​/GetCsotumerTransactions
+- [GET] ​/api​/BankAccounts​/GetCostumerTransactions
 - [GET] ​/api​/BankAccounts​/GetAllCostumers
 
 ## Docker
