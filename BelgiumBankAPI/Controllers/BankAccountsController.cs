@@ -5,7 +5,7 @@ using BelgiumBankAPI.Data;
 
 namespace BelgiumBankAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BankAccountsController : ControllerBase
     {
@@ -14,6 +14,11 @@ namespace BelgiumBankAPI.Controllers
         public BankAccountsController(ApiContext context)
         { 
             apiContext = context;
+            Customer customer1 = new Customer();
+            customer1.Name = "John";
+            customer1.Surname = "Doe";
+            apiContext.Customers.Add(customer1);
+            apiContext.SaveChanges();
         }
 
         [HttpPost]
@@ -21,7 +26,16 @@ namespace BelgiumBankAPI.Controllers
         {
             if (account.Id == 0)
             {
-                apiContext.Accounts.Add(account);
+                var addedAccount = apiContext.Accounts.Add(account);
+                if (account.Balance != 0) 
+                { 
+                    Transaction trans = new Transaction();
+                    trans.Amount = account.Balance;
+                    trans.OriginAccountId = 0;
+                    trans.DestinationAccountId = addedAccount.Entity.CustomerId;
+                    apiContext.Transactions.Add(trans);
+                }
+
             }
             else 
             {
@@ -32,6 +46,7 @@ namespace BelgiumBankAPI.Controllers
                 }
                 accountInDb = account; 
             }
+
             apiContext.SaveChanges();
             return new JsonResult(Ok(account));
         }
@@ -47,5 +62,22 @@ namespace BelgiumBankAPI.Controllers
             }
             return new JsonResult(Ok(result));
         }
+
+        [HttpGet]
+        public JsonResult GetCustomerAccounts(int customerid)
+        {
+            var result = apiContext.Accounts.Where(x => x.CustomerId == customerid);
+
+            return new JsonResult(Ok(result));
+        }
+
+        [HttpGet("/GetAllCustomers")]
+        public JsonResult GetAllCustomers() 
+        {
+            var customers = apiContext.Customers.ToList();
+            return new JsonResult(Ok(customers));
+        }
+
+
     }
 }
