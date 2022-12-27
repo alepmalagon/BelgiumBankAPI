@@ -23,3 +23,5 @@ BelgiumBankAPI is very easy to install and deploy in a Docker container.
 Get docker image from https://hub.docker.com/repository/registry-1.docker.io/alepmalagon/dot_net/general
 
 By default, the Docker will expose port 61768.
+
+TODO: Working frontend.
