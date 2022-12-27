@@ -71,6 +71,14 @@ namespace BelgiumBankAPI.Controllers
             return new JsonResult(Ok(result));
         }
 
+        [HttpGet]
+        public JsonResult GetCustomerTransactions(int customerid)
+        {
+            var result = apiContext.Transactions.Where(x => x.DestinationAccountId == customerid);
+
+            return new JsonResult(Ok(result));
+        }
+
         [HttpGet("/GetAllCustomers")]
         public JsonResult GetAllCustomers() 
         {
