@@ -1,6 +1,6 @@
 ﻿namespace BelgiumBankAPI.Models
 {
-    public class Transactions
+    public class Transaction
     {
         public int Id { get; set; }
         public int OriginAccountId { get; set; }
