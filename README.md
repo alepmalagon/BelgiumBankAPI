@@ -24,4 +24,6 @@ Get docker image from https://hub.docker.com/repository/registry-1.docker.io/ale
 
 By default, the Docker will expose port 61768. Swagger client index page will be avalable in https://localhost:61768/swagger/index.html
 
-TODO: Working frontend.
+TODO: 
+ - Working frontend.
+ - Unit testing.
