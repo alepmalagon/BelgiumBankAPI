@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+using BelgiumBankAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ApiContext>(options => options.UseInMemoryDatabase("AccountsDB"));
 // Add services to the container.
 
 builder.Services.AddControllers();
