@@ -10,9 +10,19 @@ namespace Tests.Controller
 {
     public class BankControllerTest
     {
+        private ApiContext apiContext;
+        private BankAccountsController bankController;
         public BankControllerTest() 
         {
-            apiContext = A.Fake<ApiContext>(); 
+            apiContext = A.Fake<ApiContext>();
+            bankController = A.Fake<BankAccountsController>();
+            
+        }
+        [Fact]
+        public void BankControllerGetAccountSuccess()
+        {
+            var accounts = A.Fake();
+            A.CallTo(() => bankController.GetAccount()).Returns();
         }
     }
 }
